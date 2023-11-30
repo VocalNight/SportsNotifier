@@ -1,7 +1,7 @@
 ﻿using HtmlAgilityPack;
+using System.Configuration;
 using System.Net;
 using System.Net.Mail;
-using System.Reflection;
 
 Console.WriteLine("Loading!");
 LoadInformation();
@@ -29,12 +29,12 @@ void SendEmail(string title, string message)
 
     Console.WriteLine("Sending Email...");
 
-    string smtpAddress = "smtp.gmail.com";
+    var smtpAddress = ConfigurationManager.AppSettings.Get("SMTPAdress");
     int portNumber = 587;
     bool enableSSL = true;
-    string emailFromAddress = "dummyemail!";
-    string password = "secret";
-    string emailToAddress = "dummymail!";
+    var emailFromAddress = ConfigurationManager.AppSettings.Get("SentEmail");
+    var password = ConfigurationManager.AppSettings.Get("ReceiveEmail");
+    var emailToAddress = ConfigurationManager.AppSettings.Get("Password");
     string subject = title;
     string body = message;
 
